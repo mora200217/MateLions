@@ -4,34 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.489/pdf.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.489/pdf_viewer.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.489/pdf.worker.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.489/pdf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.489/pdf.worker.min.js"></script>
-  <script src="/mozilla.github.io/pdf.js/build/pdf.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
   <script src="/application.js" charset="utf-8"></script>
   <script src="/jspdf.min.js" charset="utf-8"></script>
+  <link rel="shortcut icon" href="../favicon.ico">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/demo.css" />
+  <link rel="stylesheet" type="text/css" href="css/component.css" />
+  <script src="/js/pdfobject.js"></script>
+  <script src="js/modernizr.custom.js"></script>
+  <link rel="stylesheet" href="styles.css">
 
 
-  <title>Test</title>
+  <title>MateLions - Test</title>
 </head>
 <body>
-  <form class="main" action="/test" method="get">
-    <h1>Section Determining</h1>
-    <h8>Fill up</h8>
-    <input type="text" name="section" value= "" placeholder = "section">
-    <input type="text" name="topic" value="" placeholder="topic">
-    <input type="submit" value="Add Name">
-  </form>
+
+  <div class="main-container">
+
+    <div class = "mains main-top">
+
+      <form class="main-container" action="/test" method="get">
+    <h1> Let the games Begin!</h1>
+      <div class="form-row align-items-center">
+      <div class="col-auto">
+      <label class="sr-only" for="inlineFormInput">Name</label>
+      <div class="input-group mb-2">
+      <div class="input-group-prepend">
+      <div class="input-group-text">Core Topic</div>
+    </div>
+    <input type="text" class="form-control " id="inlineFormInput" name = "topic_id" placeholder="1-6" required="True">
+  </div>
+
+</div>
+<div class="col-auto">
+<label class="sr-only" for="inlineFormInputGroup">A or B</label>
+<div class="input-group mb-2">
+<div class="input-group-prepend">
+<div class="input-group-text">Section</div>
+</div>
+<input type="text" class="form-control" id="inlineFormInputGroup" name="section_id" placeholder="A or B" required="True">
+</div>
+</div>
+
+<div class="col-auto">
+<button type="submit" class="btn btn-primary mb-2">Submit</button>
+</div>
+</div>
+</form>
+
+</div>
+<div class="mains main-bottom">x
+<div  id="example1"></div>
+
+<script>PDFObject.embed("pdfs/<%= qs.section_id%>/<%= qs.topic_id%>/<%= qs.section_id%><%= qs.topic_id%>.pdf", "#example1");</script>
+</div>
 
 
-<section>
 
-  <h1>PDF.js Previous/Next example</h1>
-
-  <a href="/web/viewer.html?file=%compressed.tracemonkey-pldi-09.pdf">Open yourpdf.pdf with PDF.js</a>
-
-</section>
+</div>
 </body>
 </html>

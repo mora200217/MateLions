@@ -2,6 +2,7 @@
 // Main Server App Control
 
 console.log("MateLions socket server is running...");
+
 var express = require('express');
 var app = express();
 var mongoose = require("mongoose");
@@ -13,11 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 
-var nameSchema = new mongoose.Schema({
-  firstName: String,
-  lastNameName: String
-});
-var User = mongoose.model("User", nameSchema);
+
 var socket = require('socket.io');
 
 
@@ -29,8 +26,13 @@ var io = socket(server);
 io.sockets.on('connection', newConnection);
 
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/user-db");
+mongoose.connect("mongodb://localhost:27017/mateLions-db");
 
+var nameSchema = new mongoose.Schema({
+  name: String,
+  school: String
+});
+var User = mongoose.model("User", nameSchema);
 app.use(express.static('public'));
 
 
@@ -49,14 +51,24 @@ function newConnection(socket){
 }
 
 app.post("/addname", (req, res) => {
-  var myData = new User(req.body);
+  var myData = new User(req);
   myData.save()
   .then(item => {
-    // res.send("item saved to database");
-    res.redirect('/test');
+    res.send("item saved to database");
+    //res.redirect('/test');
+    console.log(req.body.firstName);
 
   })
   .catch(err => {
     res.status(400).send("unable to save to database");
   });
+});
+
+
+app.get('/get-data', function(req, res, next) {
+ User.find({},{}, function(err, docs){
+   res.render('data', {
+     "users": docs
+   });
+ });
 });

@@ -8,15 +8,71 @@
   <title>MateLions - Main App</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
   <script src="application.js" charset="utf-8"></script>
-
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/demo.css" />
+  <link rel="stylesheet" type="text/css" href="css/component.css" />
+  <script src="js/modernizr.custom.js"></script>
 </head>
 <body>
-  <h1>Ready to Rock?!</h1>
-  <form method="post" action="/addname">
-    <label>Enter Student Name</label><br>
-    <input type="text" name="firstName" placeholder="Cool Spock Name" required>
-    <input type="submit" value="Add Name">
-  </form>
+
+  <div class="container">
+    <!-- Top Navigation -->
+
+    <header class="codrops-header">
+      <h1>Register<span>MateLions | Contest </span></h1>
+    </header>
+    <section>
+      <form id="theForm" class="simform" method="post" action="/addname">
+        <div class="simform-inner">
+          <ol class="questions">
+            <li>
+              <span><label for="q1">Name</label></span>
+              <input id="q1" name="q1" type="text"/>
+            </li>
+            <li>
+              <span><label for="q2">School</label></span>
+              <input id="q2" name="q2" type="text"/>
+            </li>
+
+          </ol><!-- /questions -->
+          <button class="submit" type="submit">Send answers</button>
+          <div class="controls">
+            <button class="next"></button>
+            <div class="progress"></div>
+            <span class="number">
+              <span class="number-current"></span>
+              <span class="number-total"></span>
+            </span>
+            <span class="error-message"></span>
+          </div><!-- / controls -->
+        </div><!-- /simform-inner -->
+        <span class="final-message"></span>
+      </form><!-- /simform -->
+    </section>
+
+  </div><!-- /container -->
+  <script src="js/classie.js"></script>
+  <script src="js/stepsForm.js"></script>
+  <script>
+    var theForm = document.getElementById( 'theForm' );
+                      //disable form autocomplete
+                      theForm.setAttribute( "autocomplete", "off" );
+
+    new stepsForm( theForm, {
+      onSubmit : function( form ) {
+        // hide form
+        classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
+
+
+
+        var messageEl = theForm.querySelector( '.final-message' );
+        messageEl.innerHTML = 'Wait for Gandalf to begin the Contest!';
+        classie.addClass( messageEl, 'show' );
+
+        form.submit();
+
+      }
+    } );
+  </script>
 </body>
 </html>

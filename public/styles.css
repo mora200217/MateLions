@@ -1,0 +1,54 @@
+*{
+  margin: 0px;
+  padding: 0px;
+background: #ffffff;
+  font-family: Helvetica;
+}
+
+
+.mains{
+display: block;
+width: 100%;
+
+}
+.main-top{
+
+  /* background: green; */
+  height: 15%;
+
+
+}
+
+.main-container{
+position: absolute;
+height: 100%;
+width: 100%;
+}
+
+
+.center {
+    margin: auto;
+
+    padding: 10px;
+}
+
+
+#example1{
+display: block;
+width: 100%;
+position: absolute;
+height: 85%;
+
+}
+
+
+.main-bottom{
+/* background: blue; */
+height: 80%;
+
+}
+
+
+
+
+/* FORM */
